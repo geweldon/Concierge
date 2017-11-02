@@ -1,0 +1,62 @@
+
+.menu-title{
+  font-family: 'Oleo Script', Helvetica, sans-serif;
+  font-size: 3rem;
+  margin-top: -0.5rem;
+  margin-bottom: -0.5rem;
+  background-color: inherit;
+}
+
+.top-bar, .title-bar{
+  background-color: #292B38;
+}
+
+.top-bar .menu{
+  background-color: inherit;
+}
+
+.top-bar a, .title-bar a {
+
+  color: #00C16A;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.topbar-center-text .top-bar-center {
+  -webkit-flex: 1 0 auto !important;
+      -ms-flex: 1 0 auto !important;
+          flex: 1 0 auto !important;
+          color: white;
+}
+
+.title-bar {
+  color: white !important;
+}
+
+.off-canvas{
+  top:auto;
+  background-color: #28354F;
+}
+
+.off-canvas .button{
+  border: none;
+  border-bottom: 1px double black;
+  background:#253149;
+  background: -webkit-linear-gradient(top, #28354F, #253149)
+  /* fallback for old browsers
+  background: -webkit-linear-gradient(top, #36496D 0%, #2C3A56 30%, #253149 38%, #28354F 60%);  /* Chrome 10-25, Safari 5.1-6 */
+  /*background: linear-gradient(top, #4B6393 0%, #28354F 40%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+
+.off-canvas a {
+  width: inherit;
+  color: #AEC0E2;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+
+body{
+  background-color: #95ACC1;
+}
