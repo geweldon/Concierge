@@ -10,6 +10,10 @@ angular-foundation-6@0.11.9:
   version "0.11.9"
   resolved "https://registry.yarnpkg.com/angular-foundation-6/-/angular-foundation-6-0.11.9.tgz#c759c9d8317fa38c93d6604f32041bb50e000be4"
 
+angular-route@^1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/angular-route/-/angular-route-1.6.6.tgz#8c11748aa195c717b1b615a7e746442bfc7c61f4"
+
 angular-sticky-plugin@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/angular-sticky-plugin/-/angular-sticky-plugin-0.4.1.tgz#ddc5708346dc50907f6e6a718dcd90644cbd1831"

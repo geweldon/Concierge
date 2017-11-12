@@ -3,5 +3,5 @@
 angular.
 module('menuBar').
 component('menuBar',{
-  templateUrl:'menu-bar/menu-bar.template.html'
+  templateUrl: 'menu-bar/menu-bar.template.html'
 })

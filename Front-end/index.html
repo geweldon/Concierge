@@ -1,23 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html ng-app="Concierge">
   <head>
     <meta charset="utf-8">
     <title>Concierge - Home automation made easy</title>
-    <script src="node_modules/angular/angular.js"></script>
-    <script src="node_modules/angular-animate/angular-animate.js"></script>
-    <script src="node_modules/angular-touch/angular-touch.js"></script>
-    <script src="node_modules/angular-sticky-plugin/dist/angular-sticky.js"></script>
-    <link href="node_modules/foundation-sites/dist/css/foundation.css" rel="stylesheet">
-    <script src="/node_modules/angular-foundation-6/dist/angular-foundation.js"></script>
+    <script src="{% static 'node_modules/angular/angular.js' %}"></script>
+    <script src="{% static 'node_modules/angular-animate/angular-animate.js' %}"></script>
+    <script src="{% static 'node_modules/angular-touch/angular-touch.js' %}"></script>
+    <script src="{% static 'node_modules/angular-route/angular-route.js' %}"></script>
+    <script src="{% static 'node_modules/angular-sticky-plugin/dist/angular-sticky.js' %}"></script>
+    <link href="{% static 'node_modules/foundation-sites/dist/css/foundation.css' %}" rel="stylesheet">
+    <script src="{% static '/node_modules/angular-foundation-6/dist/angular-foundation.js' %}"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
-    <link href="Concierge.css" rel="stylesheet">
+    <link href="{% static 'Concierge.css' %}" rel="stylesheet">
 
-    <script src="Concierge.module.js"></script>
-    <script src="menu-bar/menu-bar.module.js"></script>
-    <script src="menu-bar/menu-bar.component.js"></script>
-    <script src="off-panel/off-panel.module.js"></script>
-    <script src="off-panel/off-panel.component.js"></script>
+    <script src="{% static 'Concierge.module.js' %}"></script>
+    <script src="{% static 'menu-bar/menu-bar.module.js' %}"></script>
+    <script src="{% static 'menu-bar/menu-bar.component.js' %}"></script>
+    <script src="{% static 'off-panel/off-panel.module.js' %}"></script>
+    <script src="{% static 'off-panel/off-panel.component.js' %}"></script>
+
+    <base href="{% static '/Front-end' %}" />
   </head>
   <body ng-cloak>
 
