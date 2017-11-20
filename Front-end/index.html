@@ -7,19 +7,25 @@
     <script src="{% static 'node_modules/angular/angular.js' %}"></script>
     <script src="{% static 'node_modules/angular-animate/angular-animate.js' %}"></script>
     <script src="{% static 'node_modules/angular-touch/angular-touch.js' %}"></script>
-    <script src="{% static 'node_modules/angular-route/angular-route.js' %}"></script>
+    <script src="{% static 'node_modules/angular-ui-router/release/angular-ui-router.js' %}"></script>
     <script src="{% static 'node_modules/angular-sticky-plugin/dist/angular-sticky.js' %}"></script>
     <link href="{% static 'node_modules/foundation-sites/dist/css/foundation.css' %}" rel="stylesheet">
     <script src="{% static '/node_modules/angular-foundation-6/dist/angular-foundation.js' %}"></script>
+    <script src="{% static 'node_modules/restangular/dist/restangular.js' %}"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Oleo+Script' rel='stylesheet' type='text/css'>
     <link href="{% static 'Concierge.css' %}" rel="stylesheet">
 
     <script src="{% static 'Concierge.module.js' %}"></script>
+    <script src="{% static 'Concierge.config.js' %}"></script>
     <script src="{% static 'menu-bar/menu-bar.module.js' %}"></script>
     <script src="{% static 'menu-bar/menu-bar.component.js' %}"></script>
+    <script src="{% static 'device-list/device-list.module.js' %}"></script>
+    <script src="{% static 'device-list/device-list.component.js' %}"></script>
     <script src="{% static 'off-panel/off-panel.module.js' %}"></script>
     <script src="{% static 'off-panel/off-panel.component.js' %}"></script>
+    <script src="{% static 'device-page/device-page.module.js' %}"></script>
+    <script src="{% static 'device-page/device-page.component.js' %}"></script>
 
     <base href="{% static '/Front-end' %}" />
   </head>
@@ -37,14 +43,14 @@
 
 
           <div class="off-canvas position-left reveal-for-large">
-
             <off-panel></off-panel>
 
           </div>
 
-          <div class="off-canvas-content grid-margin-x">
-
-
+          <div class="off-canvas-content">
+              <div class="grid-container">
+                  <div ui-view class="grid-x align-center"></div>
+              </div>
           </div>
 
       </div>

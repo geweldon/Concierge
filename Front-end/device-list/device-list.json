@@ -1,0 +1,30 @@
+[
+    {
+      "macAdress":"58:6D:8F:69:5A:07",
+        "IP Address": "192.168.1.1",
+        "State": "up",
+        "Vendor": "Cisco-Linksys",
+        "DeviceName": "Linksys Router"
+    },
+    {
+        "macAdress": "18:CF:5E:F6:2A:98",
+        "IP Address": "192.168.1.101",
+        "State": "up",
+        "Vendor": "Liteon Technology",
+        "DeviceName": "Brandi Laptop"
+    },
+    {
+        "macAdress": "14:91:82:24:7A:DF",
+        "IP Address": "192.168.1.105",
+        "State": "up",
+        "Vendor": "Belkin International",
+        "DeviceName": "WeMo Insight Smart Plug"
+    },
+   {
+        "macAdress":   "00:17:88:65:0D:82",
+        "IP Address": "192.168.1.104",
+        "State": "up",
+        "Vendor": "Phillips Lighting BV",
+        "DeviceName": "Phillips Hue Smart Lights"
+    }
+]

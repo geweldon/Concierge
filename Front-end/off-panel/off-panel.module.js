@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('offPanel',['mm.foundation'])
+angular.module('offPanel',['mm.foundation','deviceList'])

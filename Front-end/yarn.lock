@@ -22,7 +22,13 @@ angular-touch@^1.5.11:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular-touch/-/angular-touch-1.6.6.tgz#f2068282501b95e29135930d1ce715d5405ec3e5"
 
-angular@^1.5.11:
+angular-ui-router@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/angular-ui-router/-/angular-ui-router-0.4.3.tgz#6c29546fe50b8d2f74614dcb8660d6fc40d6e167"
+  dependencies:
+    angular "^1.0.8"
+
+angular@^1.0.8, angular@^1.5.11:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.6.tgz#fd5a3cfb437ce382d854ee01120797978527cb64"
 

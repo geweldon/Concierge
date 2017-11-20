@@ -14,6 +14,7 @@
     "angular-route": "^1.6.6",
     "angular-sticky-plugin": "^0.4.1",
     "angular-touch": "^1.5.11",
+    "angular-ui-router": "^0.4.3",
     "d3": "^4.11.0",
     "foundation-sites": "^6.4.4-rc1",
     "http-server": "^0.10.0",

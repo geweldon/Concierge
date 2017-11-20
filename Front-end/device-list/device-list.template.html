@@ -1,7 +1,7 @@
-<ul class="menu">
-  <li ng-repeat="device in $ctrl.devices">
-    <a href="#/devices/{{device.name}}">
-      <span>{{device.name}}</span>
+<ul class="menu vertical">
+  <li ng-repeat="device in $ctrl.devices | orderBy:$ctrl.orderProp">
+    <a ng-click="$ctrl.goToDevice(device)">
+      <span>{{device.DeviceName}}</span>
     </a>
   </li>
 </ul>

@@ -1,3 +1,4 @@
 "use strict";
 
-angular.module('Concierge',['menuBar','offPanel','mm.foundation','ngRoute']);
+angular.module('Concierge',['menuBar','deviceList','offPanel', 'devicePage',
+'mm.foundation','ui.router']);

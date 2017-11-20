@@ -1,0 +1,16 @@
+
+    <h1 class="cell">{{$ctrl.device.DeviceName}}</h1>
+<div class="grid-x grid-margin-x align-center" ng-if="$ctrl.device.DeviceName=='WeMo Insight Smart Plug'">
+  <a ng-click="$ctrl.switchWeMo()" class="button cell small-3">{{$ctrl.desiredWeMoState}}</a>
+</div>
+
+<div ng-if="$ctrl.device.DeviceName=='Phillips Hue Smart Lights'">
+  <div class="grid-x grid-margin-x align-center">
+    <a ng-click="$ctrl.switchLightOne()" class="button cell small-4">Light One {{$ctrl.desiredLightOneState}}</a>
+    <a ng-click="" class="button cell small-4">Light One Dim</a>
+  </div>
+  <div class="grid-x grid-margin-x align-center">
+    <a ng-click="$ctrl.switchLightTwo()" class="button cell small-4">Light Two {{$ctrl.desiredLightTwoState}}</a>
+    <a ng-click="" class="button cell small-4">Light Two Dim</a>
+  </div>
+</div>
