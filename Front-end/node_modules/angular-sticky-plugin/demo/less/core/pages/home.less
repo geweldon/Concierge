@@ -1,0 +1,32 @@
+.btn-group-call-to-action {
+	.glyphicon {
+		top: .1em;
+		margin-right: 5px;
+	}
+}
+
+.sticky-buttons {
+	padding: 10px 0;
+	background-color: @jumbotron-bg;
+	.transition(box-shadow 1s);
+
+	&.is-sticky {
+		border-bottom: 1px solid darken(@jumbotron-bg, 5%);
+	}
+}
+
+.jumbotron {
+	background-image: url('@{imagesPath}bg-big.png');
+	background-position: top left;
+	background-repeat: no-repeat;
+
+	@media (max-width: @screen-sm-max) {
+		background-position: left -40px;
+	}
+}
+
+.list-attributes {
+	> li {
+		margin-bottom: 20px;
+	}
+}
