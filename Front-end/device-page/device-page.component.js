@@ -8,10 +8,10 @@ component('devicePage',{
         this.desiredWeMoState = 'ON'
 
         this.desiredLightOneState = 'ON'
-        var lightOneURL = 'http://192.168.200.119/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
+        var lightOneURL = 'http://192.168.200.137/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
 
         this.desiredLightTwoState = 'ON'
-        var lightTwoURL = 'http://192.168.200.119/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
+        var lightTwoURL = 'http://192.168.200.137/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
 
 
 
