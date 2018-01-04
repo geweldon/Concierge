@@ -8,10 +8,10 @@ component('devicePage',{
         this.desiredWeMoState = 'ON'
 
         this.desiredLightOneState = 'ON'
-        var lightOneURL = 'http://192.168.200.137/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
+        var lightOneURL = 'http://192.168.200.118/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
 
         this.desiredLightTwoState = 'ON'
-        var lightTwoURL = 'http://192.168.200.137/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
+        var lightTwoURL = 'http://192.168.200.118/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
 
 
 
@@ -19,7 +19,7 @@ component('devicePage',{
         this.switchWeMo = function(){
           $http({
             method:'POST',
-            url:'http://localhost:5000/api/device/WeMo%20Insight'
+            url:'http://192.168.200.118:5000/api/device/WeMo%20Insight'
           }).then();
 
           if(this.desiredWeMoState=='OFF'){
@@ -31,17 +31,17 @@ component('devicePage',{
 
         };
         this.switchLightOne = function(){
-          console.log('hello');
+
           if(this.desiredLightOneState=='ON'){
             $http({
-              method:'POST',
+              method:'PUT',
               url: lightOneURL,
               data: {"on":true}
             })
             this.desiredLightOneState = 'OFF';
           }else{
               $http({
-                method:'POST',
+                method:'PUT',
                 url: lightOneURL,
                 data: {"on":false}
               })
@@ -51,7 +51,7 @@ component('devicePage',{
 
           this.dimLightOne = function(){
             $http({
-              method:'POST',
+              method:'PUT',
               url: lightOneURL,
               data: {"on":true, "bri":90}
             })
@@ -61,14 +61,14 @@ component('devicePage',{
         this.switchLightTwo = function(){
           if(this.desiredLightTwoState=='ON'){
             $http({
-              method:'POST',
+              method:'PUT',
               url: lightTwoURL,
               data: {"on":true}
             })
             this.desiredLightTwoState = 'OFF';
           }else{
               $http({
-                method:'POST',
+                method:'PUT',
                 url: lightTwoURL,
                 data: {"on":false}
               })
@@ -78,7 +78,7 @@ component('devicePage',{
 
           this.dimLightTwo = function(){
             $http({
-              method:'POST',
+              method:'PUT',
               url: lightTwoURL,
               data: {"on":true, "bri":90}
             })
