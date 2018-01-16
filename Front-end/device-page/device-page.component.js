@@ -30,6 +30,7 @@ component('devicePage',{
           }
 
         };
+        
         this.switchLightOne = function(){
 
           if(this.desiredLightOneState=='ON'){

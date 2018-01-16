@@ -1,0 +1,8 @@
+dataclasses==0.3
+Django==1.11.7
+django-environ==0.4.4
+djongo==1.2.13
+pymongo==3.6.0
+pytz==2017.3
+six==1.11.0
+sqlparse==0.2.4

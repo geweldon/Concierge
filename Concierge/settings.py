@@ -111,3 +111,10 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 STATICFILES_DIRS = ['Front-end']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'djongo',
+        'NAME': 'Concierge',
+    }
+}
