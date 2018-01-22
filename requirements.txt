@@ -2,7 +2,16 @@ dataclasses==0.3
 Django==1.11.7
 django-environ==0.4.4
 djongo==1.2.13
+graphene==2.0.1
+graphene-django==2.0.0
+graphql-core==2.0
+graphql-relay==0.4.5
+iso8601==0.1.12
+promise==2.1
 pymongo==3.6.0
 pytz==2017.3
+Rx==1.6.0
+singledispatch==3.4.0.3
 six==1.11.0
 sqlparse==0.2.4
+typing==3.6.2
