@@ -92,6 +92,14 @@ We are always looking for the quality contributions! Please check the [CONTRIBUT
 
 Not specifying any modules will build all modules. Check the `gulpfile.js` file for other tasks that are defined for this project.
 
+#### Testing with Content Security Policy
+Add the `--csp` option (e.g. `gulp --csp`) to add Content Security Policy headers to the files
+served from the local test server.
+
+Content Security Policy restricts where scripts, styles, etc. can be sourced from to improve
+protection from XSS attacks. Most notably it usually prevents use of inline scripts and styles, and
+therefore directives should be careful not to use the blocked features.
+
 #### TDD
 * Run test: `gulp watch`
 

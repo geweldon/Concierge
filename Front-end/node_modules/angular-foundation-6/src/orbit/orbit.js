@@ -31,6 +31,20 @@ function orbitContainer($element, $interval, $scope, $swipe) {
         const pct = 100 * this.currentIdx / this.slides.length;
         $element.css({ transform: `translateX(${-pct}%)` });
     };
+    this.prevState = () => {
+        $scope.$apply(() => {
+            if (this.currentIdx > 0) {
+                this.activateState((this.currentIdx - 1) % this.slides.length);
+            } else {
+                this.activateState(this.slides.length - 1);
+            }
+        });
+    };
+    this.nextState = () => {
+        $scope.$apply(() => {
+            this.activateState((this.currentIdx + 1) % this.slides.length);
+        });
+    };
     this.stopAutoPlay = () => {
         $interval.cancel(this.autoSlider);
         this.autoSlider = null;
@@ -39,7 +53,7 @@ function orbitContainer($element, $interval, $scope, $swipe) {
         this.stopAutoPlay();
         this.autoSlider = $interval(() => {
             this.activateState(++this.currentIdx % this.slides.length);
-        }, 5000);
+        }, this.cycleTime || 5000);
     };
     $element.on('mouseenter', this.stopAutoPlay);
     $element.on('mouseleave', this.restartTimer);
@@ -105,6 +119,28 @@ function orbitSlide($element) {
     };
 }
 
+function orbitPrevious($element) {
+    'ngInject';
+    const vm = this;
+    $element.css({ cursor: 'pointer' });
+    this.$onInit = () => {
+        $element.on('click', () => {
+            vm.orbit.container.prevState();
+        });
+    };
+}
+
+function orbitNext($element) {
+    'ngInject';
+    const vm = this;
+    $element.css({ cursor: 'pointer' });
+    this.$onInit = () => {
+        $element.on('click', () => {
+            vm.orbit.container.nextState();
+        });
+    };
+}
+
 angular.module('mm.foundation.orbit', ['ngTouch'])
 .directive('orbit', () => ({
     scope: {},
@@ -112,7 +148,9 @@ angular.module('mm.foundation.orbit', ['ngTouch'])
     controller: orbit,
 }))
 .directive('orbitContainer', () => ({
-    scope: {},
+    scope: {
+        cycleTime: '<'
+    },
     restrict: 'C',
     require: { orbit: '^^orbit' },
     controller: orbitContainer,
@@ -124,6 +162,22 @@ angular.module('mm.foundation.orbit', ['ngTouch'])
     restrict: 'C',
     require: { orbitContainer: '^^orbitContainer' },
     controller: orbitSlide,
+    controllerAs: 'vm',
+    bindToController: true,
+}))
+.directive('orbitPrevious', () => ({
+    scope: {},
+    restrict: 'C',
+    require: { orbit: '^^orbit' },
+    controller: orbitPrevious,
+    controllerAs: 'vm',
+    bindToController: true,
+}))
+.directive('orbitNext', () => ({
+    scope: {},
+    restrict: 'C',
+    require: { orbit: '^^orbit' },
+    controller: orbitNext,
     controllerAs: 'vm',
     bindToController: true,
 }))

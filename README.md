@@ -3,7 +3,7 @@ Home automation solution
 
 # Requirements:
 Python 3.6 or higher
-Mongodb
+Mongodb 3.4 or higher
 Nodejs
 NPM
 Yarn

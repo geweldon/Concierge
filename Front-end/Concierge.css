@@ -5,11 +5,13 @@
   margin-top: -0.5rem;
   margin-bottom: -0.5rem;
   background-color: inherit;
+  color: #CAA426 !important;
 }
 
 .top-bar, .title-bar{
-  background-color: #292B38;
+  background-color: #212121;
 }
+
 
 .top-bar .menu{
   background-color: inherit;
@@ -26,37 +28,89 @@
   -webkit-flex: 1 0 auto !important;
       -ms-flex: 1 0 auto !important;
           flex: 1 0 auto !important;
-          color: white;
+          color: #CAA426;
 }
 
 .title-bar {
-  color: white !important;
+  color: #CAA426 !important;
 }
 
 .off-canvas{
   top:auto;
-  background-color: #28354F;
+  background-color: #2E3038;
 }
 
 .off-canvas .button{
   border: none;
   border-bottom: 1px double black;
-  background:#253149;
-  background: -webkit-linear-gradient(top, #28354F, #253149)
+  background: inherit;
   /* fallback for old browsers
   background: -webkit-linear-gradient(top, #36496D 0%, #2C3A56 30%, #253149 38%, #28354F 60%);  /* Chrome 10-25, Safari 5.1-6 */
   /*background: linear-gradient(top, #4B6393 0%, #28354F 40%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.off-canvas .menu{
+    border-top: 2px double #CAA426;
+}
+
+#feature-list{
+  padding-bottom: none;
+  margin-bottom: none;
+}
+
+#device-list{
+  margin-top: -1em;
+  vertical-align: top;
+}
 
 .off-canvas a {
   width: inherit;
-  color: #AEC0E2;
+  color: #8294AD;
   font-size: 1.5em;
   font-weight: bold;
+  border-bottom: 1px double black;
 }
 
+.off-canvas a:hover{
+  color: #CAA426;
+}
+
+.active{
+  color: #CAA426 !important;
+}
+
+.align-center {
+
+    -webkit-box-pack: center;
+
+    -webkit-justify-content: center;
+
+    -ms-flex-pack: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+}
+
+.device-icon{
+  font-size: 8.5em;
+}
+
+.button{
+  background-color: #8294AD;
+  color:#2E3038;
+}
+
+.button:hover {
+  background-color: #CAA426;
+}
+
+.off-canvas .button:hover{
+  background-color: inherit;
+}
 
 body{
-  background-color: #95ACC1;
+  background-color: #4A4F5B;
+  color: #8294AD;
 }

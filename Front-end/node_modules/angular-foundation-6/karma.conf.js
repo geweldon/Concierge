@@ -39,7 +39,7 @@ config.set({
     },
 
     browsers: [
-        'Chrome', 'Firefox',
+        'Firefox', 'Chrome',
     ],
 
     // test results reporter to use

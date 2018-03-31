@@ -30,6 +30,7 @@ var eslint = require('gulp-eslint');
 var browserSync = require('browser-sync').create();
 var history = require('connect-history-api-fallback');
 var semver = require('semver');
+const helmetCsp = require('helmet-csp');
 
 var base = path.join(__dirname, 'src');
 var watchedFiles = [
@@ -37,6 +38,7 @@ var watchedFiles = [
     'src/**/*.js',
     'src/**/*.md',
     'src/**/*.html',
+    'src/**/*.scss',
     'misc/**/*',
     'gulpfile.js'
 ];
@@ -75,6 +77,46 @@ var uglifySettings = {
         join_vars: true,
         drop_console: true
     }
+};
+
+/**
+ * Optional enabling of Content-Security Policy for the demo page.
+ * Use --csp to enable CSP headers.
+ */
+let enableCSP = false;
+if (argv.csp) {
+    enableCSP = true;
+}
+
+/**
+ * Helmet options for content-security-policy
+ */
+const cspOptions = {
+    directives: {
+        defaultSrc: [
+            '\'self\'',
+            'http://cdnjs.cloudflare.com',  // Fastclick, es6 shim, etc.
+            'http://ajax.googleapis.com',   // Angular JS etc.
+        ],
+
+        scriptSrc: [
+            '\'self\'',
+            'http://cdnjs.cloudflare.com',
+            'http://ajax.googleapis.com',
+
+            //
+            // Browsersync injected script is allows via the hash.
+            // This WILL need to be updated when browsersync is updated
+            //
+            '\'sha256-GKWAMtgBzlCzmucztJIeDl/kD0MKNqAT5HDcFIff2+A=\'', // Browsersync injected
+        ],
+
+        connectSrc: [
+            'ws://localhost:3000',  // Browsersync socket connection
+            'http://localhost:3000',  // Browsersync connection
+        ],
+    },
+    reportOnly: false,
 };
 
 var pkg = require('./package.json');
@@ -117,8 +159,9 @@ function findModule(name, modules, foundModules) {
             js: expand('src/' + name + '/docs/*.js')
                 .map(fileContents).join('\n'),
             html: expand('src/' + name + '/docs/*.html')
-                .map(fileContents).join('\n')
-        }
+                .map(fileContents).join('\n'),
+            scss: expand('src/' + name + '/docs/*.scss'),  // Just the filename for scss
+        },
     };
     module.dependencies.forEach((name) => {
         findModule(name, modules, foundModules);
@@ -279,7 +322,7 @@ gulp.task('changelog', () => {
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('demo', () => {
+gulp.task('demo', ['demojs'], () => {
     var modules = findModules();
     var demoModules = modules.filter((module) => {
         return module.docs.md && module.docs.js && module.docs.html;
@@ -304,22 +347,48 @@ gulp.task('demo', () => {
         base: './misc/demo/'
     });
 
-    var css = gulp.src('./misc/demo/assets/demo.scss', {
-        base: './misc/demo/'
-    })
+    //
+    // Get the module SCSS for any modules that have any
+    //
+    const demoModulesScss = demoModules
+        .filter(module => module.docs.scss.length > 0)
+        .map(module => module.docs.scss);
+
+    //
+    // Build the demo css from the overall scss + any demo scss
+    //
+    const css = gulp.src(
+        ['./misc/demo/assets/demo.scss'].concat(...demoModulesScss),
+        {
+            base: './misc/demo/',
+        }
+    )
+    .pipe(concat('assets/demo.css'))
     .pipe(sass({
         includePaths: ['./node_modules/motion-ui/src', './node_modules/foundation-sites/scss']
-    }))
+        }))
     .pipe(postcss([
         autoprefixer({
             browsers: ['last 2 version'],
-            cascade: false
-        })
+            cascade: false,
+        }),
     ]));
 
     return merge(assets, html, css).pipe(gulp.dest('./dist'));
 });
 
+gulp.task('demojs', () => {
+    const modules = findModules();
+    const demoModules = modules.filter((module) => {
+        return module.docs.md && module.docs.js && module.docs.html;
+    });
+
+    return gulp.src('./misc/demo/index.js')
+        .pipe(template({
+            demoModules,
+        }))
+        .pipe(gulp.dest('./dist'));
+});
 
 // Test
 gulp.task('test-current', (done) => {
@@ -429,11 +498,20 @@ gulp.task('release', (done) => {
 });
 
 gulp.task('server:connect', () => {
+    //
+    // Enable the middleware.
+    // CSP is included only if the --csp flag is passed on the command line.
+    //
+    const middleware = [history()];
+    if (enableCSP) {
+        middleware.push(helmetCsp(cspOptions));
+    }
+
     browserSync.init({
         // port: 8080,
         server: './dist/',
         // browser: ["google-chrome"/*, "firefox"*/],
-        middleware: [ history() ]
+        middleware,
     });
 });
 

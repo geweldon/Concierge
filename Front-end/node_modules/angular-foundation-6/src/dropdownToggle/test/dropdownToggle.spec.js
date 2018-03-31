@@ -107,6 +107,34 @@ describe('dropdownToggle', function() {
       expect(targetElm.hasClass('is-open')).toBe(false);
     });
 
+    it('should close on doClose event', function() {
+      // first open the dropdown
+      toggleElm[0].click();
+
+      $rootScope.$broadcast('doClose.af.dropdownToggle');
+      $scope.$apply();
+      expect(targetElm.hasClass('is-open')).toBe(false);
+    });
+
+    it('should emit an event when opening and closing', function() {
+      var openEmitted = false, closeEmitted = false;
+      var deregOpenListener = $scope.$on('open.af.dropdownToggle', () => {
+        openEmitted = true;
+      });
+      var deregCloseListener = $scope.$on('close.af.dropdownToggle', () => {
+        closeEmitted = true;
+      });
+      toggleElm[0].click();
+      $scope.$apply();
+      expect(openEmitted).toBe(true);
+      expect(closeEmitted).toBe(false);
+      toggleElm[0].click();
+      $scope.$apply();
+      expect(closeEmitted).toBe(true);
+      deregOpenListener();
+      deregCloseListener();
+    });
+
     // it('should close on body click', function() {
     //   toggleElm[0].click();
     //   expect(targetElm.hasClass('is-open')).toBe(true);

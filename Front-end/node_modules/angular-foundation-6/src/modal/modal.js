@@ -310,17 +310,13 @@ angular.module('mm.foundation.modal', ['mm.foundation.mediaQueries'])
         }
 
         const modalDomEl = angular.element('<div modal-window></div>').attr({
-            style: `
-                visibility: visible;
-                z-index: -1;
-                display: block;
-            `,
             'window-class': classes.join(' '),
             index: openedWindows.length() - 1,
         });
 
         modalDomEl.html(options.content);
         $compile(modalDomEl)(options.scope);
+
         openedWindows.top().value.modalDomEl = modalDomEl;
 
         return $timeout(() => {
@@ -333,18 +329,28 @@ angular.module('mm.foundation.modal', ['mm.foundation.mediaQueries'])
             const modalPos = getModalCenter(modalInstance, true);
             modalDomEl.detach();
 
-            modalDomEl.attr({
-                style: `
-                    visibility: visible;
-                    left: ${modalPos.left}px;
-                    display: block;
-                    position: ${modalPos.position};
-                `,
+            //
+            // Apply the style with .css() to conform to content security policy
+            //
+            modalDomEl.css({
+                visibility: 'visible',
+                left: '${modalPos.left}px',
+                display: 'block',
+                position: '${modalPos.position}',
+                'z-index': '',  // Clear the z-index that was previously set above
             });
 
             const promises = [];
 
             if (backdropDomEl) {
+                //
+                // Enusre this is display: block
+                // NOTE: this must be done AFTER $compile or CSP errors are triggered,
+                //       and after $timeout or it is just replaced by the template.
+                //
+                backdropDomEl.css({
+                    display: 'block',
+                });
                 promises.push($animate.enter(backdropDomEl, body, body[0].lastChild));
             }
 
@@ -531,8 +537,8 @@ angular.module('mm.foundation.modal', ['mm.foundation.mediaQueries'])
 
             openedPromise.then(() => {
                 modalOpenedDeferred.resolve();
-            }, () => {
-                modalOpenedDeferred.reject();
+            }, (reason) => {
+                modalOpenedDeferred.reject(reason);
             });
 
             return modalInstance;

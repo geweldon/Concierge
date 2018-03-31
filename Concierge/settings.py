@@ -25,7 +25,7 @@ SECRET_KEY = '(40nn3uapfpazgjz5@3ybup1b3pid@+a(o)@u62n+j+)nb0!!y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -112,10 +112,3 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 STATICFILES_DIRS = ['Front-end']
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'Concierge',
-    }
-}

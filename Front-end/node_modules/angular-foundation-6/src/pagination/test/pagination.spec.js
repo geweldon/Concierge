@@ -61,12 +61,12 @@ describe('pagination directive', function () {
 
   it('disables the "previous" link if current page is 1', function() {
     updateCurrentPage(1);
-    expect(getPaginationEl(0).hasClass('unavailable')).toBe(true);
+    expect(getPaginationEl(0).hasClass('disabled')).toBe(true);
   });
 
   it('disables the "next" link if current page is last', function() {
     updateCurrentPage(5);
-    expect(getPaginationEl(-1).hasClass('unavailable')).toBe(true);
+    expect(getPaginationEl(-1).hasClass('disabled')).toBe(true);
   });
 
   it('changes currentPage if a page link is clicked', function() {
@@ -110,9 +110,9 @@ describe('pagination directive', function () {
     $rootScope.$digest();
 
     expect(getPaginationBarSize()).toBe(3); // Previous, 1, Next
-    expect(getPaginationEl(0)).toHaveClass('unavailable');
+    expect(getPaginationEl(0)).toHaveClass('disabled');
     expect(getPaginationEl(1)).toHaveClass('current');
-    expect(getPaginationEl(2)).toHaveClass('unavailable');
+    expect(getPaginationEl(2)).toHaveClass('disabled');
   });
 
   it('does not "break" when `total-items` is negative', function() {
@@ -120,9 +120,9 @@ describe('pagination directive', function () {
     $rootScope.$digest();
 
     expect(getPaginationBarSize()).toBe(3); // Previous, 1, Next
-    expect(getPaginationEl(0)).toHaveClass('unavailable');
+    expect(getPaginationEl(0)).toHaveClass('disabled');
     expect(getPaginationEl(1)).toHaveClass('current');
-    expect(getPaginationEl(2)).toHaveClass('unavailable');
+    expect(getPaginationEl(2)).toHaveClass('disabled');
   });
 
   it('does not change the current page when `total-items` changes but is valid', function() {
@@ -358,15 +358,15 @@ describe('pagination directive', function () {
     it('disables the "first" & "previous" link if current page is 1', function() {
       updateCurrentPage(1);
 
-      expect(getPaginationEl(0)).toHaveClass('unavailable');
-      expect(getPaginationEl(1)).toHaveClass('unavailable');
+      expect(getPaginationEl(0)).toHaveClass('disabled');
+      expect(getPaginationEl(1)).toHaveClass('disabled');
     });
 
     it('disables the "last" & "next" link if current page is num-pages', function() {
       updateCurrentPage(5);
 
-      expect(getPaginationEl(-2)).toHaveClass('unavailable');
-      expect(getPaginationEl(-1)).toHaveClass('unavailable');
+      expect(getPaginationEl(-2)).toHaveClass('disabled');
+      expect(getPaginationEl(-1)).toHaveClass('disabled');
     });
 
     it('changes currentPage if the "first" link is clicked', function() {
@@ -453,14 +453,14 @@ describe('pagination directive', function () {
     it('does not disable the "1" link if current page is 1', function() {
       updateCurrentPage(1);
 
-      expect(getPaginationEl(0)).not.toHaveClass('unavailable');
+      expect(getPaginationEl(0)).not.toHaveClass('disabled');
       expect(getPaginationEl(0)).toHaveClass('current');
     });
 
     it('does not disable the "last" link if current page is last page', function() {
       updateCurrentPage(5);
 
-      expect(getPaginationEl(-1)).not.toHaveClass('unavailable');
+      expect(getPaginationEl(-1)).not.toHaveClass('disabled');
       expect(getPaginationEl(-1)).toHaveClass('current');
     });
 
@@ -497,8 +497,8 @@ describe('pagination directive', function () {
     it('disables the "first" & activates "1" link if current page is 1', function() {
       updateCurrentPage(1);
 
-      expect(getPaginationEl(0)).toHaveClass('unavailable');
-      expect(getPaginationEl(1)).not.toHaveClass('unavailable');
+      expect(getPaginationEl(0)).toHaveClass('disabled');
+      expect(getPaginationEl(1)).not.toHaveClass('disabled');
       expect(getPaginationEl(1)).toHaveClass('current');
     });
 
@@ -506,8 +506,8 @@ describe('pagination directive', function () {
       updateCurrentPage(5);
 
       expect(getPaginationEl(-2)).toHaveClass('current');
-      expect(getPaginationEl(-2)).not.toHaveClass('unavailable');
-      expect(getPaginationEl(-1)).toHaveClass('unavailable');
+      expect(getPaginationEl(-2)).not.toHaveClass('disabled');
+      expect(getPaginationEl(-1)).toHaveClass('disabled');
     });
   });
 

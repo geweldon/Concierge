@@ -1,7 +1,8 @@
-<ul class="menu vertical">
+<ul class="menu vertical icons icon-left" id="device-list">
   <li ng-repeat="device in $ctrl.devices | orderBy:$ctrl.orderProp">
-    <a ng-click="$ctrl.goToDevice(device)">
-      <span>{{device.DeviceName}}</span>
+    <a ng-class="{active: $index === $ctrl.selected}"  ng-click="$ctrl.goToDevice($index, $ctrl, device)">
+      <span>  {{device.deviceType.deviceType}} {{device.name}}</span>
+      <i ng-class="$ctrl.set_icon(device)"></i>
     </a>
   </li>
 </ul>

@@ -1,67 +1,116 @@
 <div ng-controller="DrillDownDemoCtrl">
-  <h4>Auto `Wrapper` and `Back` Links</h4>
-  <ul class="drilldown menu" drilldown-menu>
-    <li>
-      <a>Item 1</a>
-      <ul class="menu">
-        <li><a href="#">Item 1A</a></li>
-        <li>
-          <a href="#">Item 1B</a>
-          <ul class="menu">
-            <li><a href="#">Item 1B i</a></li>
-            <li><a href="#">Item 1B ii</a></li>
-            <li>
-              <a href="#">Item 1B iii</a>
-              <ul class="menu">
-                <li><a href="#">Item 1B iii alpha</a></li>
-                <li><a href="#">Item 1B iii omega</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">Item 1B iv</a>
-              <ul class="menu">
-                <li><a href="#">Item 1B iv alpha</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><a href="#">Item 1C</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#">Item 2</a>
-      <ul class="menu">
-        <li><a href="#">Item 2A</a></li>
-        <li><a href="#">Item 2B</a></li>
-      </ul>
-    </li>
-    <li><a href="#">Item 3</a></li>
-    <li><a href="#">Item 4</a></li>
-  </ul>
-
-  <!-- Manual Wrapper and Back Links -->
-  <h4>Manual `Wrapper` and `Back` Links</h4>
-  <!-- Manually added wrapper MUST be `div` with class `is-drilldown` -->
-  <div class="is-drilldown">
+  <div class="callout">
+    <h4>Auto `Wrapper` and `Back` Links</h4>
     <ul class="drilldown menu" drilldown-menu>
+
       <li>
         <a>Item 1</a>
         <ul class="menu">
-          <!-- Manual back link MUST be `li` with class `.js-drilldown-back` -->
-          <li class="js-drilldown-back"><a href="#">Manual Back To Top</a></li>
           <li><a href="#">Item 1A</a></li>
           <li>
             <a href="#">Item 1B</a>
             <ul class="menu">
-              <li class="js-drilldown-back"><a href="#">Manual Back To Level 1</a></li>
-              <li><a href="#">Item 1B i</a></li>
+              <li><a href="#">Item 1B i make this really long so that it will overflow a line</a></li>
               <li><a href="#">Item 1B ii</a></li>
+              <li>
+                <a href="#">Item 1B iii - this one is also extended to overflow a line</a>
+                <ul class="menu">
+                  <li><a href="#">Item 1B iii alpha</a></li>
+                  <li><a href="#">Item 1B iii omega</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#">Item 1B iv</a>
+                <ul class="menu">
+                  <li><a href="#">Item 1B iv alpha</a></li>
+                </ul>
+              </li>
             </ul>
           </li>
           <li><a href="#">Item 1C</a></li>
         </ul>
       </li>
-      <li><a href="#">Item 2</a></li>
+      <li>
+        <a href="#">Search Engines</a>
+        <ul class="menu">
+          <li><a href="https://www.google.com/">Google</a></li>
+          <li><a href="https://www.bing.com/">Bing</a></li>
+          <li><a href="https://www.duckduckgo.com/">DuckDuckGo</a></li>
+        </ul>
+      </li>
+      <li><a href="http://foundation.zurb.com/">Foundation</a></li>
+      <li><a href="#">Item 4</a></li>
     </ul>
   </div>
+
+  <div class="callout">
+
+    <!-- Manual Wrapper and Back Links -->
+    <h4>Manual `Wrapper` and `Back` Links</h4>
+    <!-- Manually added wrapper MUST be `div` with class `is-drilldown` -->
+    <div class="is-drilldown">
+      <ul class="drilldown menu" drilldown-menu>
+        <li>
+          <a>Item 1</a>
+          <ul class="menu">
+            <!-- Manual back link MUST be `li` with class `.js-drilldown-back` -->
+            <li class="js-drilldown-back"><a href="#">Manual Back To Top</a></li>
+            <li><a href="#">Item 1A</a></li>
+            <li>
+              <a href="#">Item 1B</a>
+              <ul class="menu">
+                <li class="js-drilldown-back"><a href="#">Manual Back To Level 1</a></li>
+                <li><a href="#">Item 1B i</a></li>
+                <li><a href="#">Item 1B ii</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Item 1C</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Item 2</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout" id="drilldown-api">
+
+    <!-- API usage -->
+    <h4>API Usage</h4>
+    <alert ng-repeat="alert in vm.alerts" type="alert.type" close="vm.closeAlert($index)">
+      {{alert.msg}}
+    </alert>
+
+    <div>
+      <button class="button" ng-click="vm.showHideMenu()">Show / Hide the Menu</button>
+      <button class="button" ng-click="vm.ddmApi.resizeMenu()" ng-show="vm.haveShown">Resize</button>
+    </div>
+
+    <div class="callout ng-hide" ng-show="vm.shouldShow">
+      <ul class="drilldown menu" id="drilldown-api-menu" drilldown-menu drilldown-menu-api="vm.ddmApi">
+        <li>
+          <a href="#">Item 1</a>
+          <ul class="menu" id="drilldown-api-submenu-1">
+            <li><a href="#">Item 1A</a></li>
+            <li>
+              <a href="#">Item 1B</a>
+              <ul class="menu">
+                <li><a href="#">Item 1B i</a></li>
+                <li><a href="#">Item 1B ii</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Item 1C</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Item 2</a></li>
+      </ul>
+
+      <div ng-show="vm.haveResized">
+        <h5>Other API functions</h5>
+        <button class="button" ng-click="vm.showSubmenu1()">Open Submenu 1</button>
+        <button class="button" ng-click="vm.hideSubmenu1()">Close Submenu 1</button>
+        <button class="button" ng-click="vm.ddmApi.hideAll()">Close All Submenus</button>
+      </div>
+    </div>
+  </div>
+
 </div>

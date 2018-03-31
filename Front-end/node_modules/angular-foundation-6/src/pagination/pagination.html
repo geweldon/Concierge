@@ -4,7 +4,7 @@
         'pagination-previous': $first,
         'pagination-next': $last,
         current: page.active,
-        unavailable: page.disabled
+        disabled: page.disabled
         }">
     <a ng-if="!page.active" ng-click="selectPage(page.number)">{{page.text}}</a>
     <span ng-if="page.active">{{page.text}}</span>

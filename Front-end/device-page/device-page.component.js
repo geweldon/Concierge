@@ -1,89 +1,78 @@
 angular.
 module('devicePage').
 component('devicePage',{
+  bindings: {desiredLightState: '@', style: '@'},
   templateUrl:'device-page/device-page.template.html',
-  controller:['$stateParams','$http', function ($stateParams,$http) {
-        this.device = $stateParams.device;
-
-        this.desiredWeMoState = 'ON'
-
-        this.desiredLightOneState = 'ON'
-        var lightOneURL = 'http://192.168.200.118/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
-
-        this.desiredLightTwoState = 'ON'
-        var lightTwoURL = 'http://192.168.200.118/api/Swq85vFJmOgLEjyLBgs1hs2v0qZsNh3lyNb6w9H-/lights/1/state'
+  controller:['$stateParams','$http','$scope', function ($stateParams,$http, $scope) {
+        ctrl = this
+        var desiredLightState
+        var style
+        this.device = $stateParams.device
+        device_status = this.device.status
+        On = "color: #45A041"
+        Off = "color: #D10018"
 
 
+        deviceId = this.device.id
+        url = 'http://127.0.0.1:8000/graphql/'
 
-
-        this.switchWeMo = function(){
-          $http({
-            method:'POST',
-            url:'http://192.168.200.118:5000/api/device/WeMo%20Insight'
-          }).then();
-
-          if(this.desiredWeMoState=='OFF'){
-            this.desiredWeMoState = 'ON'
+        this.update = function(){
+          if (device_status == "True"){
+            $scope.desiredLightState = 'OFF'
+            $scope.style = On
           }
-          else {
-            this.desiredWeMoState = 'OFF'
+          else{
+            $scope.desiredLightState = 'ON'
+            $scope.style = Off
           }
+        }
 
-        };
-        
+        ctrl.update()
+
+
         this.switchLightOne = function(){
-
-          if(this.desiredLightOneState=='ON'){
+          if(device_status=="False"){
             $http({
-              method:'PUT',
-              url: lightOneURL,
-              data: {"on":true}
+              method:'POST',
+              url: url,
+              content_type:"application/graphql",
+              data: `mutation{sendCommand(deviceId:${deviceId},command:"On",arguments:""){ok response status}}`
             })
-            this.desiredLightOneState = 'OFF';
+                device_status = "True"
+                ctrl.update()
+
           }else{
               $http({
-                method:'PUT',
-                url: lightOneURL,
-                data: {"on":false}
+                method:'POST',
+                url: url,
+                content_type:"application/graphql",
+                data: `mutation{sendCommand(deviceId:${deviceId},command:"Off",arguments:""){ok response status}}`
               })
-              this.desiredLightOneState = 'ON';
+                device_status = "False"
+                ctrl.update()
             }
           }
 
           this.dimLightOne = function(){
             $http({
-              method:'PUT',
-              url: lightOneURL,
+              method:'POST',
+              url: url,
               data: {"on":true, "bri":90}
             })
           }
 
 
-        this.switchLightTwo = function(){
-          if(this.desiredLightTwoState=='ON'){
-            $http({
-              method:'PUT',
-              url: lightTwoURL,
-              data: {"on":true}
-            })
-            this.desiredLightTwoState = 'OFF';
-          }else{
-              $http({
-                method:'PUT',
-                url: lightTwoURL,
-                data: {"on":false}
-              })
-              this.desiredLightTwoState = 'ON';
-            }
-          };
+          this.set_icon = function(){
+              var deviceType = this.device.deviceType.deviceType
 
-          this.dimLightTwo = function(){
-            $http({
-              method:'PUT',
-              url: lightTwoURL,
-              data: {"on":true, "bri":90}
-            })
+              if (deviceType == "Phillips Hue Light")
+                return "fas fa-lightbulb align-right"
+              else if (deviceType == "WeMo")
+                return "fas fa-plug align-right"
+
           }
+
+
 
 
   }]
