@@ -22,5 +22,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('graphql/', views.graphql_request),
+    path('SetConciergeIP/', views.set_concierge_ip),
     url(r'^.*$', TemplateView.as_view(template_name="index.html"), name='index')
 ]
