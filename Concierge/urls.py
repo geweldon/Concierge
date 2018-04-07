@@ -17,7 +17,7 @@ from django.conf.urls import url
 from django.urls import path
 from django.contrib import admin
 from django.views.generic.base import TemplateView
-from Concierge.Concierge import views
+from .Concierge import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
