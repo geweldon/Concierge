@@ -18,12 +18,12 @@ from django.urls import path
 from django.contrib import admin
 from django.views.generic.base import TemplateView
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from . import views
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('graphql/', views.graphql_request),
-    path('SetConciergeIP/', views.set_concierge_ip),
+    path('graphql/', Concierge.views.graphql_request),
+    path('SetConciergeIP/', Concierge.views.set_concierge_ip),
     url(r'^.*$', TemplateView.as_view(template_name="index.html"), name='index')
 ]
 
