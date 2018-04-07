@@ -107,16 +107,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'Front-end')
+STATIC_ROOT = 'Front-end'
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'Front-end'),
-)
+STATICFILES_DIRS = ['Front-end']
 
 # Configure Django App for Heroku.
 import django_heroku
