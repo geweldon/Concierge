@@ -113,4 +113,9 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
 STATICFILES_DIRS = ['Front-end']
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
