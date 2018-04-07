@@ -115,7 +115,3 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = ['Front-end']
-
-# Configure Django App for Heroku.
-import django_heroku
-django_heroku.settings(locals())
