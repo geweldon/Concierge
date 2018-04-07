@@ -22,8 +22,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('graphql/', Concierge.views.graphql_request),
-    path('SetConciergeIP/', Concierge.views.set_concierge_ip),
+    path('graphql/', application.Concierge.views.graphql_request),
+    path('SetConciergeIP/', application.Concierge.views.set_concierge_ip),
     url(r'^.*$', TemplateView.as_view(template_name="index.html"), name='index')
 ]
 
