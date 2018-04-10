@@ -13,7 +13,7 @@ component('deviceList',{
 
       $http({
         method:'POST',
-        url: 'http://192.168.200.87:7000/graphql/',
+        url: 'http://concierge.hm/graphql/',
         content_type:"application/graphql",
         data: 'query{allDevices{id name status deviceType{deviceType}}}'
       }).then(function(response) {
